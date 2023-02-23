@@ -2,18 +2,19 @@ import React from "react";
 import logo from "../../icons/logo.png"
 import './Navbar.css'
 import CartWidget from './CartWidget.js'
+import {NavLink} from 'react-router-dom';
 
 const Navbar = ({children}) =>{
 
     return (
-        <div class='contenedor_header'>
+        <div className='contenedor_header'>
             <img src={logo} alt="" />    
             {children}
             <nav>
                 <ul>
-                    <li><a href="https://www.golloadventures.com">Principal</a></li>
-                    <li><a href="https://opensea.io/es/collection/gollo-adventures">OpenSea</a></li>
-                    <li><a href="https://v2.woonkly.com/user/golloadventures">Woonkly</a></li>
+                    <li><NavLink to='/'>Home</NavLink></li>
+                    <li><NavLink to='category/legendario'>Legendario</NavLink></li>
+                    <li><NavLink to='category/epico'>Epico</NavLink></li>
                 </ul>
             </nav>
             <CartWidget/>
