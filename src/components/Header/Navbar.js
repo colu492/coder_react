@@ -8,7 +8,9 @@ const Navbar = ({children}) =>{
 
     return (
         <div className='contenedor_header'>
-            <img src={logo} alt="" />    
+            <NavLink to='/'>
+                <img src={logo} alt="" />
+            </NavLink>
             {children}
             <nav>
                 <ul>
