@@ -1,0 +1,24 @@
+.contador_container {
+        width:350px;
+        background-color: #00be10;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        border-radius: 20px;
+        text-decoration: none;
+    }
+
+.botones_contador{
+    border: none;
+    font-weight: 600;
+    background-color: #00be10;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.botones_contador:hover{
+    background-color: #046b0d;
+    color: #63e66e;
+}
+
+

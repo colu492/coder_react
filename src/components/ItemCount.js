@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import './ItemCount.css'
 
 const AgregarCarrito = ({initial, stock, onAdd}) => {
     const [count, setCount] = useState(parseInt(initial));
@@ -20,12 +21,12 @@ const AgregarCarrito = ({initial, stock, onAdd}) => {
 
     return (
         <>
-        <div style={style.carrito}>
-        <button disabled={count <= 1} onClick={handlerRestar}>➖</button>
+        <div className="contador_container">
+        <button className="botones_contador" disabled={count <= 1} onClick={handlerRestar}>➖</button>
         <h2>{count}</h2>
-        <button disabled={count >= stock} onClick={handlerAgregar}>➕</button>
-        <button onClick={handlerClick}>Vaciar Carrito</button>
-        <button disabled={stock <= 0} onClick={() => onAdd(count)}>Comprar</button>
+        <button className="botones_contador" disabled={count >= stock} onClick={handlerAgregar}>➕</button>
+        <button className="botones_contador" onClick={handlerClick}>Vaciar Carrito</button>
+        <button className="botones_contador" disabled={stock <= 0} onClick={() => onAdd(count)}>Agregar al Carrito</button>
         </div>
         </>
     );
@@ -33,14 +34,5 @@ const AgregarCarrito = ({initial, stock, onAdd}) => {
     
 };
 
-const style = {
-    carrito:{
-        width:'300px',
-        backgroundColor:'#00ee14',
-        display:'flex',
-        alignItems:'center',
-        justifyContent:'center'
-    }
 
-};
 export default AgregarCarrito;

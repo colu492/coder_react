@@ -1,16 +1,11 @@
 import React, {useEffect, useState } from "react"
-import AgregarCarrito from "../components/ItemCount.js"; 
+
 import ItemList from "../components/ItemList.js";
 import './ItemListContainer.css';
 import {useParams} from 'react-router-dom';
+import { getFirestore, collection, getDocs, query, where } from 'firebase/firestore';
 
-const nfts = [
-    { id: 1, image:"https://woonklylabs.mo.cloudinary.net/OhgYQcxIF7AYAuE1fAxHC.png?tx=if_ar_lt_1_and_h_gte_709/c_fill,h_709/if_end/if_ar_gt_1_and_w_gte_709/c_fill,w_709/if_end/if_ar_eq_1_and_w_gt_560/c_fill,w_560/if_end/if_w_gte_1536/c_fill,w_1536/if_end", title:"Legendario 445", category:"legendario", price:"200ETH"},
-    { id: 2, image:"https://woonklylabs.mo.cloudinary.net/2WI36FgCUmOPhAmFFxYtR.png?tx=if_ar_lt_1_and_h_gte_709/c_fill,h_709/if_end/if_ar_gt_1_and_w_gte_709/c_fill,w_709/if_end/if_ar_eq_1_and_w_gt_560/c_fill,w_560/if_end/if_w_gte_1536/c_fill,w_1536/if_end", title:"Epico 643",category:"epico", price:"150ETH"},
-    { id: 3, image:"https://woonklylabs.mo.cloudinary.net/6iocJda2AJsSFIJsXMDtU.png?tx=if_ar_lt_1_and_h_gte_709/c_fill,h_709/if_end/if_ar_gt_1_and_w_gte_709/c_fill,w_709/if_end/if_ar_eq_1_and_w_gt_560/c_fill,w_560/if_end/if_w_gte_1536/c_fill,w_1536/if_end", title:"Legendario 890",category:"legendario", price:"230ETH"},
-    { id: 4, image:"https://woonklylabs.mo.cloudinary.net/SyWpfumXRZYJTYrhVCtvU.png?tx=if_ar_lt_1_and_h_gte_709/c_fill,h_709/if_end/if_ar_gt_1_and_w_gte_709/c_fill,w_709/if_end/if_ar_eq_1_and_w_gt_560/c_fill,w_560/if_end/if_w_gte_1536/c_fill,w_1536/if_end", title:"Epico 012",category:"epico", price:"90ETH"},
-    { id: 5, image:"https://woonklylabs.mo.cloudinary.net/C-jj4d9koZmZLlB4Jpal3.png?tx=if_ar_lt_1_and_h_gte_709/c_fill,h_709/if_end/if_ar_gt_1_and_w_gte_709/c_fill,w_709/if_end/if_ar_eq_1_and_w_gt_560/c_fill,w_560/if_end/if_w_gte_1536/c_fill,w_1536/if_end", title:"Legendario 987",category:"legendario", price:"900ETH"},
-];
+
 
 export const ItemListContainer = ({greeting}) =>{
 
@@ -19,18 +14,24 @@ export const ItemListContainer = ({greeting}) =>{
     const {categoryid} = useParams();
 
     useEffect(() => {
+        const querydb = getFirestore();
+        const queryCollection = collection(querydb, 'nfts');
+        if(categoryid) {
+            const queryFilter = query(queryCollection, where('category', '==', categoryid))
+        
+            getDocs(queryFilter)
+            .then (res => setNfts(res.docs.map(nft => ({id: nft.id, ...nft.data() })))) 
+        } else {
+            getDocs(queryCollection)
+            .then(res => setNfts(res.docs.map(nft => ({id: nft.id, ...nft.data() }))))
+        }
 
-        const getNfts = new Promise(resolve => {
-            setTimeout(() =>{
-                resolve(nfts)
-            }, 2000);
-        });
-        if (categoryid) {
-            getNfts.then(res => setNfts(res.filter(nfts => nfts.category === categoryid)))
+        /**if (categoryid) {
+            getNfts.then(res => setNfts(res.filter(nfts => nfts.category === categoryid)));
         } else {
             getNfts.then(res => setNfts(res));
 
-        }
+        }**/
         
 
         /**const getNfts = async () =>{
@@ -48,15 +49,15 @@ export const ItemListContainer = ({greeting}) =>{
 
     }, [categoryid])
 
-    const onAdd = (cantidad) => {
-        alert(`compraste ${cantidad} NFTs`);
-    };
 
     return (
         <>
-        <div className="general_container">
+        <div className="titulo">
             <h2> {greeting} </h2>
-            <AgregarCarrito initial={1} stock={5} onAdd={onAdd}/>
+        </div>
+        <div className="general_container">
+            
+
             {!error ? (
                 <>
                 {Nfts.length ? (

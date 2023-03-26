@@ -1,6 +1,7 @@
 import React from "react";
 import './item.css';
-import {NavLink} from 'react-router-dom';
+import {Link} from 'react-router-dom';
+
 
 const Item = ({info}) => {
 
@@ -8,8 +9,9 @@ const Item = ({info}) => {
         <div className="ItemCard">
             <img src={info.image}  alt={info.title}/>
             <h3>{info.title}</h3>
+            <p>{info.category}</p>
             <p>{info.price}</p>
-            <NavLink to='/detalle'>Detalle</NavLink>
+            <Link to={`./detalle/${info.id}` } className="enlace_detalle">Detalles</Link>
         </div>
     );
 }

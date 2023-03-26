@@ -1,5 +1,14 @@
+
 .general_container{
     display: flex;
     flex-wrap: wrap;
+}
 
+.titulo{
+    margin: auto;
+}
+
+#root{
+    display: flex;
+    flex-direction: column;
 }

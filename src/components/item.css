@@ -1,9 +1,16 @@
 .ItemCard {
+    text-decoration: none;
     padding: 20px;
     width: 300px;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     background-color: rgb(20, 94, 13);
+    border-radius: 20px;
+    margin: 20px;
+}
+
+.ItemCard:hover{
+    background-color: #0af439;
 }
 
 .ItemCard img{
@@ -23,4 +30,16 @@
     font-weight: 500;
     margin: auto;
 
+}
+.enlace_detalle{
+    color: aliceblue;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    background-color: #25f94f;
+    padding: 20px;
+    border-radius: 20px;
+}
+.enlace_detalle:hover {
+    background-color: #04340e;
 }
