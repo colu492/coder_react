@@ -26,26 +26,6 @@ export const ItemListContainer = ({greeting}) =>{
             .then(res => setNfts(res.docs.map(nft => ({id: nft.id, ...nft.data() }))))
         }
 
-        /**if (categoryid) {
-            getNfts.then(res => setNfts(res.filter(nfts => nfts.category === categoryid)));
-        } else {
-            getNfts.then(res => setNfts(res));
-
-        }**/
-        
-
-        /**const getNfts = async () =>{
-            try {
-                const res = await fetch("https://fakestoreapi.com/products?limit=10");
-                const data = await res.json();
-                setNfts(data);
-            }
-            catch {
-                setError(true)
-            }
-        };
-
-        getNfts();**/
 
     }, [categoryid])
 

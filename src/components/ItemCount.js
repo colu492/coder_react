@@ -25,7 +25,6 @@ const AgregarCarrito = ({initial, stock, onAdd}) => {
         <button className="botones_contador" disabled={count <= 1} onClick={handlerRestar}>➖</button>
         <h2>{count}</h2>
         <button className="botones_contador" disabled={count >= stock} onClick={handlerAgregar}>➕</button>
-        <button className="botones_contador" onClick={handlerClick}>Vaciar Carrito</button>
         <button className="botones_contador" disabled={stock <= 0} onClick={() => onAdd(count)}>Agregar al Carrito</button>
         </div>
         </>

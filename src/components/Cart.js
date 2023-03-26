@@ -31,10 +31,7 @@ export const Cart = () => {
         .catch(error =>{
             alert("Error al agregar NFT: ", error);
         });
-        /**const db = getFirestore();
-        const ordersCollection = collection(db, 'orders');
-        addDoc(ordersCollection, venta)
-        .then (({ id }) => console.log(id))**/
+
     }
     const actualizarDatos = (nuevoComprador) =>{
         setComprador(nuevoComprador);
